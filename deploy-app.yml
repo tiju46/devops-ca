@@ -1,0 +1,23 @@
+---
+- name: Deploy existing Docker web app
+  hosts: myserver
+  become: yes
+
+  tasks:
+    - name: Pull existing web app image
+      docker_image:
+        name: docker/welcome-to-docker
+        source: pull
+
+    - name: Stop old container if exists
+      docker_container:
+        name: myapp
+        state: absent
+
+    - name: Run the web app container
+      docker_container:
+        name: myapp
+        image: docker/welcome-to-docker
+        state: started
+        ports:
+          - "80:80"
