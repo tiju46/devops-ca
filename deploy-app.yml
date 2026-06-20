@@ -4,10 +4,15 @@
   become: yes
 
   tasks:
+    #- name: Pull existing web app image
+     # docker_image:
+      #  name: docker/welcome-to-docker
+       # source: pull
     - name: Pull existing web app image
       docker_image:
-        name: docker/welcome-to-docker
+        name: nginxdemos/hello
         source: pull
+
 
     - name: Stop old container if exists
       docker_container:
@@ -17,7 +22,11 @@
     - name: Run the web app container
       docker_container:
         name: myapp
-        image: docker/welcome-to-docker
+        #image: docker/welcome-to-docker
+        image: nginxdemos/hello
         state: started
-        ports:
-          - "80:80"
+        restart_policy: always
+        published_ports:
+            - "80:80"
+        #ports:
+         # - "80:80"
