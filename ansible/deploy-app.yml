@@ -1,0 +1,8 @@
+- name: Run real Flask app container
+  docker_container:
+    name: real-flask-app
+    image: ghcr.io/<your-username>/real-flask-app:latest
+    state: started
+    restart_policy: always
+    published_ports:
+      - "80:5000"
