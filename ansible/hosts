@@ -1,3 +1,2 @@
 [myserver]
-52.210.210.34 ansible_user=ubuntu ghcr_username=tiju46 gghcr_token={{ lookup('env','GHCR_TOKEN') }}
-
+52.210.210.34 ansible_user=ubuntu
