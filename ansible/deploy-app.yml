@@ -2,6 +2,13 @@
   become: yes
 
   tasks:
+
+    - name: Log in to GHCR
+      docker_login:
+        registry_url: ghcr.io
+        username: "{{ ghcr_username }}"
+        password: "{{ ghcr_token }}"
+
     - name: Install required packages
       apt:
         name:
