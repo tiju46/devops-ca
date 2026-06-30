@@ -46,6 +46,7 @@
         name: real-flask-app
         image: ghcr.io/tiju46/real-flask-app:latest
         state: started
+        recreate: yes
         restart_policy: always
         published_ports:
           - "80:5000"
