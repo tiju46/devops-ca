@@ -2,6 +2,10 @@
   become: yes
 
   tasks:
+    - name: Remove old container if exists
+      docker_container:
+        name: real-flask-app
+        state: absent
 
     - name: Log in to GHCR
       docker_login:
@@ -45,6 +49,7 @@
       docker_container:
         name: real-flask-app
         image: ghcr.io/tiju46/real-flask-app:latest
+        pull: yes
         state: started
         recreate: yes
         restart_policy: always
